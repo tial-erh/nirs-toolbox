@@ -26,7 +26,11 @@ nch = size(signal,2);
 if nch>1
     signal_corrected = zeros(size(signal));
     for ch = 1:nch
-        signal_corrected(:,ch) = nirs.math.tddr( signal(:,ch) , sample_rate,splitPosNeg );
+        if sum(isnan(signal(:,ch)))>1 % This is added by TIAL
+            signal_corrected(:,ch) = signal(:,ch); % Ignore NaNs
+        else
+            signal_corrected(:,ch) = nirs.math.tddr( signal(:,ch) , sample_rate,splitPosNeg );
+        end
     end
     return
 end
