@@ -29,8 +29,8 @@ end
 [~,~,figIdx]=unique(types);
 
 for idx=1:length(unique(figIdx))
-    if(~ allonsamefig)
-    figs(idx)=figure;
+    if(~ allonsamefig)            
+    figs(idx)=figure('Renderer', 'painters', 'Position', [120 120 250 350]);
     else
         if(idx==1)
             figs(idx)=figure;
@@ -98,7 +98,8 @@ for idx=1:length(utypes)
             h{idx}(lst(j))=plot(a(j),data.time,real(data.data(:,lst(j))));
         end
         set(a(j),'xlim',[min(data.time) max(data.time)]);
-        set(a(j),'ylim',[min(real(data.data(:))) max(real(data.data(:))) ]);
+%         set(a(j),'ylim',[min(real(data.data(:))) max(real(data.data(:))) ]);
+        set(a(j),'ylim',[-1.5 1.5]);
         axis(a(j),'off');
     end
     %title(types{idx});
@@ -121,11 +122,11 @@ cm=lines(length(utypes));
 
 for i=1:length(h)
     if(~isempty(strfind(utypes{i},'hbo')))
-        set(h{i},'Color','r','LineWidth',5);
+        set(h{i},'Color','r','LineWidth',1);
     elseif(~isempty(strfind(utypes{i},'hbr')))
-        set(h{i},'Color','b','LineWidth',5);
+        set(h{i},'Color','b','LineWidth',1);
      elseif(~isempty(strfind(utypes{i},'hbt')))
-        set(h{i},'Color','g','LineWidth',5);
+        set(h{i},'Color','g','LineWidth',1);
     else
         set(h{i},'Color',cm(i,:));
     end
