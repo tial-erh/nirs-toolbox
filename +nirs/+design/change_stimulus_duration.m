@@ -35,8 +35,8 @@ end
 
 for i=1:length(stimname)
 
-    if(isfield(data.stimulus,stimname{i}))
+   %if(isfield(data.stimulus,stimname{i}))   % alina: not entering loop
         data.stimulus.(stimname{i}).dur(:)=duration(i);
-    end
+   % end
     
 end
